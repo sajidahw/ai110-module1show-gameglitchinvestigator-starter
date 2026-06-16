@@ -46,21 +46,21 @@ Describe your fixed game in numbered steps so a reader can follow along without 
 ```
 # Paste your pytest output here, e.g.:
 cd /gameglitchinvestigator && python -m pytest tests/test_game_logic.py -v 2>&1
-========================================================================================= test session starts ==========================================================================================
+=================================================================== test session starts =======================================================================
 platform darwin -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0 -- /.venv/bin/python
 cachedir: .pytest_cache
 rootdir: /gameglitchinvestigator
 plugins: anyio-4.13.0
 collected 6 items
 
-tests/test_game_logic.py::test_exact_match_returns_win PASSED                                                                                                                [ 16%]
+tests/test_game_logic.py::test_exact_match_returns_win PASSED                                                                                                          [ 16%]
 tests/test_game_logic.py::test_guess_too_high_returns_correct_outcome_and_hint PASSED                                                                                        [ 33%]
 tests/test_game_logic.py::test_guess_too_low_returns_correct_outcome_and_hint PASSED                                                                                         [ 50%]
-tests/test_game_logic.py::test_negative_input_is_rejected PASSED                                                                                                             [ 66%]
-tests/test_game_logic.py::test_out_of_range_input_is_rejected PASSED                                                                                                         [ 83%]
+tests/test_game_logic.py::test_negative_input_is_rejected PASSED                                                                                                         [ 66%]
+tests/test_game_logic.py::test_out_of_range_input_is_rejected PASSED                                                                                                      [ 83%]
 tests/test_game_logic.py::test_decimal_input_is_truncated_to_int PASSED                                                                                                      [100%]
 
-================================================================================ 6 passed in 0.02s =================================================================================
+============================================================= 6 passed in 0.02s ======================================================================
 ```
 
 ## 🚀 Stretch Features
