@@ -20,7 +20,7 @@ def test_guess_too_low_returns_correct_outcome_and_hint():  # FIX: Refactor impo
     assert message == "📈 Go HIGHER!"
 
 
-def test_negative_input_is_rejected():
+def test_negative_input_is_rejected():  # FIX: added to verify parse_guess rejects negatives — previously accepted as valid guesses
     ok, value, err = parse_guess("-5")
     assert not ok
     assert value is None
