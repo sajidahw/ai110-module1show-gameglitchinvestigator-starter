@@ -86,7 +86,7 @@ if st.session_state.status != "playing":
 if submit:
     st.session_state.attempts += 1
 
-    ok, guess_int, err = parse_guess(raw_guess)
+    ok, guess_int, err = parse_guess(raw_guess, low=low, high=high)  # FIX: pass difficulty range so out-of-range inputs are rejected
 
     if not ok:
         st.session_state.history.append(raw_guess)

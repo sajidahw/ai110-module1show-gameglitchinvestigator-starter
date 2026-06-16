@@ -25,3 +25,10 @@ def test_negative_input_is_rejected():
     assert not ok
     assert value is None
     assert err is not None
+
+
+def test_out_of_range_input_is_rejected():
+    ok, value, err = parse_guess("9999", low=1, high=100)
+    assert not ok
+    assert value is None
+    assert err is not None
