@@ -33,13 +33,13 @@ It wrote the code, ran away, and now the game is unplayable.
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. Reading the hint of the guessing boundary and attempts left, I enter a guess of 24 and click the Submit Guess button.
+2. Hint states to go higher.
+3. I enter 44 and the hint states to go higher, with 7 attempts left.
+4. I enter 100, hint states to go lower, with 6 attempts left.
+5. Clicking on Developer Debug Info, I see secret is 98, so I enter 98, I get a correct banner with balloons and a message of "You won! The secret was 98. Final score: 35" which ends the game. The attempts were correctly tracked with the guess saved.
 
-**Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
+**Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here --><img src="gameWon.jpg" alt="Winning Game Screenshot" width="400"/>
 
 ## 🧪 Test Results
 
@@ -48,6 +48,22 @@ Describe your fixed game in numbered steps so a reader can follow along without 
 # pytest tests/
 # ========================= X passed in 0.XXs =========================
 ```
+cd /gameglitchinvestigator && python -m pytest tests/test_game_logic.py -v 2>&1
+========================================================================================= test session starts ==========================================================================================
+platform darwin -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0 -- /.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /gameglitchinvestigator
+plugins: anyio-4.13.0
+collected 6 items                                                                                                                                                                  
+
+tests/test_game_logic.py::test_exact_match_returns_win PASSED                                                                                                                [ 16%]
+tests/test_game_logic.py::test_guess_too_high_returns_correct_outcome_and_hint PASSED                                                                                        [ 33%]
+tests/test_game_logic.py::test_guess_too_low_returns_correct_outcome_and_hint PASSED                                                                                         [ 50%]
+tests/test_game_logic.py::test_negative_input_is_rejected PASSED                                                                                                             [ 66%]
+tests/test_game_logic.py::test_out_of_range_input_is_rejected PASSED                                                                                                         [ 83%]
+tests/test_game_logic.py::test_decimal_input_is_truncated_to_int PASSED                                                                                                      [100%]
+
+================================================================================ 6 passed in 0.02s =================================================================================
 
 ## 🚀 Stretch Features
 
