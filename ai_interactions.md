@@ -16,12 +16,12 @@ Apply the fixes for the bugs after discovering them individually such as the hin
 
 <!-- List the steps the agent took (files edited, commands run, etc.) -->
 Claude made code changes in the files: logic_utils.py, app.py, and test_game_logic.py. 
-Commands ran were when looking at the git status and diff of files, we changed: git -C /Users/sajidahwahdy/CP_AI_Engineering/gameglitchinvestigator status && git -C /Users/sajidahwahdy/CP_AI_Engineering/gameglitchinvestigator diff
+Commands ran were when looking at the git status and diff of files, we changed: git -C /CP_AI_Engineering/gameglitchinvestigator status && git -C /CP_AI_Engineering/gameglitchinvestigator diff
 
 **What did you have to verify or fix manually?**
-
-<!-- Describe anything the agent got wrong or that required human review -->
 I would sometimes change the wording or make the FIX code comment more brief. I also carefully verified the updates before allowing it to apply the code fixes. As a second verification, I would rerun and play the game to see if the hints were now correct, attempts were tracked and score updated properly.
+<!-- Describe anything the agent got wrong or that required human review -->
+
 ---
 
 ## Test Generation (SF7)
@@ -31,22 +31,26 @@ What are 3 inputs that would be considered edge cases that could break the game?
 
 | Edge Case | Prompt Used | AI-Suggested Test | Did It Pass? | Your Reasoning |
 |-----------|-------------|-------------------|--------------|----------------|
-|Negative Numbers | can you add a pytest case in test_game_logic.py to handle a negative number input as an edge case? can you update parse_guess to reject negative inputs? Add a FIX comment with why code was updated to that line.| def test_negative_input_is_rejected():
+|Negative Numbers | can you add a pytest case in test_game_logic.py to handle a negative number input as an edge case? can you update parse_guess to reject negative inputs? Add a FIX comment with why code was updated to that line.|```python def test_negative_input_is_rejected():
     ok, value, err = parse_guess("-5")
     assert not ok
     assert value is None
-    assert err is not None|run the pytest to check if the test passes. cd /gameglitchinvestigator && python -m pytest tests/test_game_logic.py -v 2>&1 | Yes | Constraint of if value < 1: added to parse_guess function which would reject negative numbers and provide an error message if entered.
-|Numbers outside difficulty range | Provide a number outside the ranges such as 9999 for range of 20.can you add a pytest case in test_game_logic.py to handle a number outside the ranges input as an edge case? can you update parse_guess to reject inputs outside of the range? Add a FIX comment with why code was updated to that line. run pytest to check if the test passes.| def test_out_of_range_input_is_rejected():
+    assert err is not None
+    ```|run the pytest to check if the test passes. ``` bash cd /gameglitchinvestigator && python -m pytest tests/test_game_logic.py -v 2>&1``` |
+     Yes | Constraint of if value < 1: added to parse_guess function which would reject negative numbers and provide an error message if entered.
+    
+|Numbers outside difficulty range | Provide a number outside the ranges such as 9999 for range of 20.can you add a pytest case in test_game_logic.py to handle a number outside the ranges input as an edge case? can you update parse_guess to reject inputs outside of the range? Add a FIX comment with why code was updated to that line. run pytest to check if the test passes.| ```python def test_out_of_range_input_is_rejected():
     ok, value, err = parse_guess("9999", low=1, high=100)
     assert not ok
     assert value is None
-    assert err is not None|run the pytest to check if the test passes. cd /gameglitchinvestigator && python -m pytest tests/test_game_logic.py -v 2>&1 | Yes | Constraint of if value < low or value > high: added to parse_guess function which would reject out-of-range numbers and provide an error message if entered. 
-| Silent decimal truncation| Provide a decimal as an edge case such as 3.9| can you add a pytest case in test_game_logic.py to handle a decimal input as an edge case which will become truncated as described in logic_utils.py from lines 24-30? Add a FIX comment with why code was updated. Run pytest to check if test passes. | def test_decimal_input_is_truncated_to_int():  # FIX: added to document that decimals are silently truncated (3.9 → 3) rather than rejected or warned about
+    assert err is not None```|run the pytest to check if the test passes. ```bash cd /gameglitchinvestigator && python -m pytest tests/test_game_logic.py -v 2>&1``` | Yes | Constraint of if value < low or value > high: added to parse_guess function which would reject out-of-range numbers and provide an error message if entered. 
+| Silent decimal truncation| Provide a decimal as an edge case such as 3.9| can you add a pytest case in test_game_logic.py to handle a decimal input as an edge case which will become truncated as described in logic_utils.py from lines 24-30? Add a FIX comment with why code was updated. Run pytest to check if test passes. | ```python def test_decimal_input_is_truncated_to_int():  # FIX: added to document that decimals are silently truncated (3.9 → 3) rather than rejected or warned about
     # "3.9" is silently truncated to 3 via int(float(raw)) — documents known truncation behavior
     ok, value, err = parse_guess("3.9")
     assert ok
     assert value == 3
-    assert err is None| Yes| As per implementation for parse_guess, decimals are truncated as integers.
+    assert err is None
+    ```| Yes| As per implementation for parse_guess, decimals are truncated as integers.
 
 ---
 
