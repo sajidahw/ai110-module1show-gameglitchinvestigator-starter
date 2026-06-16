@@ -1,5 +1,5 @@
 import pytest
-from logic_utils import check_guess
+from logic_utils import check_guess, parse_guess
 
 
 def test_exact_match_returns_win():  # FIX: Refactor import and updated assertion for tuple return value
@@ -18,3 +18,10 @@ def test_guess_too_low_returns_correct_outcome_and_hint():  # FIX: Refactor impo
     outcome, message = check_guess(40, 50)
     assert outcome == "Too Low"
     assert message == "📈 Go HIGHER!"
+
+
+def test_negative_input_is_rejected():
+    ok, value, err = parse_guess("-5")
+    assert not ok
+    assert value is None
+    assert err is not None

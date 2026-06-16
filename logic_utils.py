@@ -29,6 +29,9 @@ def parse_guess(raw: str):
     except Exception:
         return False, None, "That is not a number."
 
+    if value < 1:  # FIX: reject negative numbers and zero — parse_guess previously accepted them as valid guesses
+        return False, None, "Enter a number greater than 0."
+
     return True, value, None
 
 
