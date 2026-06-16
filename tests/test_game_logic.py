@@ -32,3 +32,11 @@ def test_out_of_range_input_is_rejected():  # FIX: added low/high params to pars
     assert not ok
     assert value is None
     assert err is not None
+
+
+def test_decimal_input_is_truncated_to_int():  # FIX: added to document that decimals are silently truncated (3.9 → 3) rather than rejected or warned about
+    # "3.9" is silently truncated to 3 via int(float(raw)) — documents known truncation behavior
+    ok, value, err = parse_guess("3.9")
+    assert ok
+    assert value == 3
+    assert err is None
