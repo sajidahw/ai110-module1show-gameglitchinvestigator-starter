@@ -27,7 +27,7 @@ def test_negative_input_is_rejected():
     assert err is not None
 
 
-def test_out_of_range_input_is_rejected():
+def test_out_of_range_input_is_rejected():  # FIX: added low/high params to parse_guess and updated test to check for out-of-range input
     ok, value, err = parse_guess("9999", low=1, high=100)
     assert not ok
     assert value is None
