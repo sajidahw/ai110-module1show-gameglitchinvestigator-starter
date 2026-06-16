@@ -47,10 +47,10 @@ def check_guess(guess, secret):
         else:
             return "Too Low", "📈 Go HIGHER!"
     except TypeError:
-        g = str(guess)
-        if g == secret:
+        # FIX: cast both to int for numeric comparison instead of str (avoids lexicographic ordering bug)
+        if int(guess) == int(secret):
             return "Win", "🎉 Correct!"
-        if g > secret:
+        if int(guess) > int(secret):
             return "Too High", "📉 Go LOWER!"
         return "Too Low", "📈 Go HIGHER!"
 
