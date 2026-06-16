@@ -115,7 +115,7 @@ I asked both models to explain the lexographic vs numeric comparison issue as I 
 Combined: even on attempts where the comparison is numerically correct, the message tells you the wrong direction. On even attempts, the comparison itself may also be wrong.|n Python, strings are compared lexicographically (dictionary/alphabetical order), one character at a time from left to right.
 
 Example 1: Simple letters "apple" < "banana"
-# True Python compares:a vs b Since "a" comes before "b" in the alphabet, "apple" is considered smaller. For numbers, bigger numbers have a higher value. For strings, uses alphabetical order and patterns like the first character. A good rule of thumb:
+True Python compares:a vs b Since "a" comes before "b" in the alphabet, "apple" is considered smaller. For numbers, bigger numbers have a higher value. For strings, uses alphabetical order and patterns like the first character. A good rule of thumb:
 
 Numbers compare by size.
 
