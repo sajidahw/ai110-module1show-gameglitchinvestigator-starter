@@ -95,21 +95,12 @@ def check_guess(guess, secret):
         >>> check_guess(40, 50)
         ('Too Low', '📈 Go HIGHER!')
     """
+    # FIX: removed try/except TypeError — that branch only existed to handle the even-attempt str() cast in app.py, which has been removed; secret is always an int now
     if guess == secret:
         return "Win", "🎉 Correct!"
-
-    try:
-        if guess > secret:
-            return "Too High", "📉 Go LOWER!"
-        else:
-            return "Too Low", "📈 Go HIGHER!"
-    except TypeError:
-        # FIX: cast both to int for numeric comparison instead of str (avoids lexicographic ordering bug)
-        if int(guess) == int(secret):
-            return "Win", "🎉 Correct!"
-        if int(guess) > int(secret):
-            return "Too High", "📉 Go LOWER!"
-        return "Too Low", "📈 Go HIGHER!"
+    if guess > secret:
+        return "Too High", "📉 Go LOWER!"
+    return "Too Low", "📈 Go HIGHER!"
 
 
 def update_score(current_score: int, outcome: str, attempt_number: int):

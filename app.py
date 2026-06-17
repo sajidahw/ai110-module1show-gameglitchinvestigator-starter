@@ -94,10 +94,7 @@ if submit:
     else:
         st.session_state.history.append(guess_int)
 
-        if st.session_state.attempts % 2 == 0:
-            secret = str(st.session_state.secret)  # '42' instead of 42
-        else:
-            secret = st.session_state.secret
+        secret = st.session_state.secret  # FIX: removed even-attempt str() cast — it had no game purpose and was the root cause of the lexicographic comparison bug
 
         outcome, message = check_guess(guess_int, secret)
 
