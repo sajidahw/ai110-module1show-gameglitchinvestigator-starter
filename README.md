@@ -39,7 +39,7 @@ Describe your fixed game in numbered steps so a reader can follow along without 
 4. I enter 100, hint states to go lower, with 6 attempts left.
 5. Clicking on Developer Debug Info, I see secret is 98, so I enter 98, I get a correct banner with balloons and a message of "You won! The secret was 98. Final score: 35" which ends the game. The attempts were correctly tracked with the guess saved.
 
-**Screenshot** _(optional)_: <!-- Insert a screenshot of your fixed, winning game here --><img src="gameWon.jpg" alt="Winning Game Screenshot" width="400"/>
+**Screenshot** _(optional)_: <!-- Insert a screenshot of your fixed, winning game here --><img src="gameWon.jpg" alt="Winning Game Screenshot" width="650"/>
 
 ## 🧪 Test Results
 
